@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-service
+  namespace: ticketing
+  labels:
+    app: user-service
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
       app: user-service
@@ -14,11 +17,9 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: acr4anil.azurecr.io/user-service:latest
           ports:
             - containerPort: 8080
           env:
-            {{- range .Values.env }}
-            - name: {{ .name }}
-              value: {{ .value | quote }}
-            {{- end }}
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"

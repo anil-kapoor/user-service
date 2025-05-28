@@ -6,7 +6,7 @@ spring:
 azure:
   cosmos:
     uri: https://ticketing-db.documents.azure.com:443/
-    key: x
+    key: PIniX3ut6ZEDfl3MGqYpCEVVBYPy2tcQmJumzElcy8HBZ5wr6C0u2v9wtTGQUisTzYfn9gsPlMjuACDbXiuUMg==
     database: ticketing-management-db
 
 logging:
