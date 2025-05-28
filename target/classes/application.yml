@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: user-service
+azure:
+  cosmos:
+    uri: https://ticketing-db.documents.azure.com:443/
+    key: PIniX3ut6ZEDfl3MGqYpCEVVBYPy2tcQmJumzElcy8HBZ5wr6C0u2v9wtTGQUisTzYfn9gsPlMjuACDbXiuUMg==
+    database: ticketing-management-db
+
+logging:
+  level:
+    com.example.userservice: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
