@@ -3,14 +3,14 @@ name: Build and Deploy to AKS
 on:
   push:
     branches:
-      - master
-  workflow_dispatch:
+      - '**'     # Triggers on push to any branch
+  workflow_dispatch: # Enables manual run from GitHub UI
 
 env:
   ACR_NAME: acr4anil
   IMAGE_NAME: user-service
   CLUSTER_NAME: aks4ticketing
-  RESOURCE_GROUP: ticketing  # Your Azure resource group name
+  RESOURCE_GROUP: ticketing
 
 jobs:
   build-and-deploy:
