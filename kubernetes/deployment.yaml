@@ -19,7 +19,7 @@ spec:
         - name: acr-auth   # Ensure this secret exists
       containers:
         - name: user-service
-          image: acr4anil.azurecr.io/user-service:${IMAGE_TAG}  # Will be replaced in GitHub Actions
+          image: acr4anil.azurecr.io/user-service:latest  # Will be replaced in GitHub Actions
           ports:
             - containerPort: 8080
           env:
