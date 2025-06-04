@@ -1,7 +1,13 @@
 #FROM eclipse-temurin:17-jdk-alpine
-FROM eclipse-temurin:17-jdk-jammy AS build
+# Stage 1: Build the JAR
+FROM maven:3.9.4-eclipse-temurin-17 AS build
+COPY . /app
+WORKDIR /app
+RUN mvn clean package -DskipTests
+
+# Stage 2: Copy and run
+FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp
-ARG JAR_FILE=target/user-service-*.jar
-COPY ${JAR_FILE} app.jar
+COPY --from=build /app/target/user-service-*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 HEALTHCHECK --interval=30s --timeout=5s CMD curl -f http://localhost:8080/actuator/health || exit 1
