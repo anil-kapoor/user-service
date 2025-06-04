@@ -55,6 +55,16 @@ jobs:
         run: |
           sed -i "s|\${IMAGE_TAG}|${{ github.sha }}|g" kubernetes/deployment.yaml
 
+      - name: Create ACR auth secret
+        run: |
+          kubectl delete secret acr-auth -n ticketing --ignore-not-found
+          kubectl create secret docker-registry acr-auth \
+            --docker-server=acr4anil.azurecr.io \
+            --docker-username=${{ secrets.ACR_USERNAME }} \
+            --docker-password=${{ secrets.ACR_PASSWORD }} \
+            --namespace=ticketing
+
+
       - name: Deploy to AKS
         run: |
           kubectl apply -f kubernetes/deployment.yaml
