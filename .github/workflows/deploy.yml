@@ -38,7 +38,8 @@ jobs:
 
       - name: Build and Push Docker Images (SHA + latest) for AMD64
         run: |
-          docker buildx build --platform linux/amd64 \
+          docker buildx create --use
+          docker buildx build --platform linux/amd64,linux/arm64 \
             -t $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }} \
             -t $ACR_NAME.azurecr.io/$IMAGE_NAME:latest \
             --push .
