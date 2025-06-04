@@ -1,5 +1,5 @@
 #FROM eclipse-temurin:17-jdk-alpine
-FROM eclipse-temurin:17-jdk-jammy as build
+FROM eclipse-temurin:17-jdk-jammy AS build
 VOLUME /tmp
 ARG JAR_FILE=target/user-service-*.jar
 COPY ${JAR_FILE} app.jar
