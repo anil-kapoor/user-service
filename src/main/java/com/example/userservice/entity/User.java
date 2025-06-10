@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import com.example.userservice.enums.Role;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -29,4 +32,6 @@ public class User {
     private String role; // e.g., CUSTOMER, ADMIN
 
     private String createdAt;
+
+    private List<Role> roles;
 }
